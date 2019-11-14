@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="card-body">
+
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Prénom</label>
+          <input type="text" class="form-control" 
+          formControlName="FirstName" 
+          #FirstName />
+        </div>
+        <div *ngIf="angForm.controls['FirstName'].invalid && (angForm.controls['FirstName'].dirty || angForm.controls['FirstName'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['FirstName'].errors.required">
+                  Prénom est requis.
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Nom</label>
+            <input type="text" class="form-control" formControlName="LastName" 
+            #LastName />
+          </div>
+          <div *ngIf="angForm.controls['LastName'].invalid && (angForm.controls['LastName'].dirty || angForm.controls['LastName'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['LastName'].errors.required">
+                  Nom est requis.
+                </div>
+        </div>
+          <div class="form-group">
+            <label class="col-md-4">Age</label>
+            <input type="text" class="form-control" formControlName="Age" 
+            #Age />
+          </div>
+          <div *ngIf="angForm.controls['Age'].invalid && (angForm.controls['Age'].dirty || angForm.controls['Age'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['Age'].errors.required">
+                  Age est requis.
+                </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Situation familiale</label>
+          <select class="form-control select" formControlName="Family" (change)="onChangeFamily($event)">
+            <option>Marié</option>
+            <option>Divorcé</option>
+            <option>Pacsé</option>
+            <option>Célibataire</option>
+            <option>Veuf</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Rôle</label>
+            <select class="form-control select" formControlName="Role" (change)="onChangeRole($event)">
+                <option>Casseur</option>
+                <option>Protection</option>
+              </select>
+        </div>
+        <div class="form-group">
+                <label class="col-md-4">Nom d'utilisateur</label>
+                <input type="text" class="form-control" formControlName="Username" 
+                #Username />
+              </div>
+              <div *ngIf="angForm.controls['Username'].invalid && (angForm.controls['Username'].dirty || angForm.controls['Username'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Username'].errors.required">
+                      Nom d'utilisateur est requis.
+                    </div>
+        </div>
+        <div class="form-group">
+                <label class="col-md-4">Mot de passe</label>
+                <input type="text" class="form-control" formControlName="Password" 
+                #Password />
+              </div>
+              <div *ngIf="angForm.controls['Password'].invalid && (angForm.controls['Password'].dirty || angForm.controls['Password'].touched)" class="alert alert-danger">
+                    <div *ngIf="angForm.controls['Password'].errors.required">
+                      Mot de passe est requis.
+                    </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" 
+          (click) = "register(FirstName.value,LastName.value,Age.value,Family,Role,Username.value,Password.value)"
+          [disabled]="angForm.pristine || angForm.invalid" >M'inscrire</button>
+        </div>
+      </form>
+    </div>
+  </div>
