@@ -14,10 +14,12 @@ import { NavigationCancel,
 })
 export class AppComponent {
   title = 'giletJauneApp';
+  notConnect=false;
   constructor(private loadingBar: SlimLoadingBarService, private router: Router) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
+    this.notConnect=true;
   }
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {

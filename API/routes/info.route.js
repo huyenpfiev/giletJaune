@@ -2,20 +2,18 @@ const express = require('express');
 const app = express();
 const infoRoutes = express.Router();
 
-
 let Info = require('../models/Info');
 
-
 infoRoutes.route('/register').post(function (req, res) {
-  console.log("hhhhh");
-  let info = new Info(req.body);
   
-  Info.find({Username:req.body.Username},function (err, user){
+  let info = new Info(req.body);
+
+  Info.findOne({Username:req.body.Username},function (err, user){
     if(err){
       res.send(err);
     }
-    if(user.length==1) {
-      res.send("Existed");
+    if(user) {
+      res.json({'Account':'Account existed'});
     }
     else{
         info.save()
@@ -23,8 +21,25 @@ infoRoutes.route('/register').post(function (req, res) {
         res.status(200).json({'Account': 'Account has been added successfully'});
         })
         .catch(err => {
-        res.status(400).send("unable to save to database");
+        res.status(400).send("Unable to save to database");
         });
+    }
+  });
+  
+});
+
+infoRoutes.route('/login').post(function (req, res) {
+  
+  Info.findOne({Username:req.body.Username,Password:req.body.Password},function (err, user){
+    if(err){
+      res.send(err);
+    }
+    if(!user) {
+      res.json({'Account':'Incorrect'});
+    }
+    else{
+      res.status(200).json({'Account':'Login successfully'});
+        
     }
   });
   

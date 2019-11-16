@@ -13,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { InfosService } from './infos.service';
+import { InfosService } from './service/infos.service';
+import { AlertService } from './service/alert.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { InfosService } from './infos.service';
     
   ],
   providers: [
-    InfosService
+    InfosService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

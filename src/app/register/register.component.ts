@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators ,FormControl} from '@angular/forms';
-import { InfosService } from '../infos.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InfosService } from '../service/infos.service';
+import { AlertService } from '../service/alert.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,7 +15,7 @@ export class RegisterComponent implements OnInit {
   situations: any=['Marié','Divorcé','Pacsé','Célibataire','Veuf'];
   roles:any=['Casseur','Protection'];
 
-  constructor(private fb: FormBuilder,private is: InfosService) {
+  constructor(private fb: FormBuilder,private is: InfosService, private alert:AlertService,private route: ActivatedRoute, private router: Router) {
     this.createForm();
   }
 
@@ -22,8 +24,8 @@ export class RegisterComponent implements OnInit {
       FirstName: ['', Validators.required ],
       LastName: ['', Validators.required ],
       Age: ['', Validators.required ],
-      Family:['Marié'],
-      Role:['Casseur'],
+      Family:[this.situations[0]],
+      Role:[this.roles[0]],
       Username: ['', Validators.required ],
       Password: ['', Validators.required ]
     });
@@ -38,7 +40,23 @@ export class RegisterComponent implements OnInit {
     this.angForm.get('Role').setValue(event.target.value,{onlySelf:true});
   }
   onSubmit(){
-    this.is.register(JSON.stringify(this.angForm.value));
+   
+      var FirstName=this.angForm.get('FirstName').value;
+      var LastName=this.angForm.get('LastName').value;
+      var Age=this.angForm.get('Age').value;
+      var Family=this.angForm.get('Family').value;
+      var Role=this.angForm.get('Role').value;
+      var Username=this.angForm.get('Username').value;
+      var Password=this.angForm.get('Password').value;
+    
+    this.is.register(FirstName,LastName,Age,Family,Role,Username,Password).subscribe(
+      res => {
+        //this.alert.success('Registration successful', true)
+        this.router.navigate(['login']);
+      }
+      
+    );
+      
     
   }
 
