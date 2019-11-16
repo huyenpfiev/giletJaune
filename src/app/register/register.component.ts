@@ -9,9 +9,9 @@ import { InfosService } from '../infos.service';
 export class RegisterComponent implements OnInit {
 
   angForm: FormGroup;
-  select: FormControl;
-  private familyText: String;
-  private roleText:String;
+  select:FormControl;
+  situations: any=['Marié','Divorcé','Pacsé','Célibataire','Veuf'];
+  roles:any=['Casseur','Protection'];
 
   constructor(private fb: FormBuilder,private is: InfosService) {
     this.createForm();
@@ -22,28 +22,24 @@ export class RegisterComponent implements OnInit {
       FirstName: ['', Validators.required ],
       LastName: ['', Validators.required ],
       Age: ['', Validators.required ],
-      Family:this.familyText,
-      Role:this.roleText,
+      Family:['Marié'],
+      Role:['Casseur'],
       Username: ['', Validators.required ],
       Password: ['', Validators.required ]
     });
     this.select = new FormControl('');
   }
   
-  onChangeFamily(event: Event){
-    let selectedOptions = event.target['options'];
-    let selectedIndex = selectedOptions.selectedIndex;
-    this.familyText = selectedOptions[selectedIndex].text;
+  onChangeFamily(event){
+    this.angForm.get('Family').setValue(event.target.value,{onlySelf:true});
+    //console.log(this.angForm.get('Family').value);
+  }
+  onChangeRole(event){
+    this.angForm.get('Role').setValue(event.target.value,{onlySelf:true});
+  }
+  onSubmit(){
+    this.is.register(JSON.stringify(this.angForm.value));
     
-  }
-  onChangeRole(event: Event){
-    let selectedOptions = event.target['options'];
-    let selectedIndex = selectedOptions.selectedIndex;
-    this.roleText = selectedOptions[selectedIndex].text;
-   
-  }
-  register(FirstName, LastName, Age, Family, Role, Username, Password){
-    this.is.register(FirstName, LastName, Age, Family, Role, Username, Password);
   }
 
   ngOnInit() {

@@ -26,7 +26,7 @@ const routes: Routes = [
     component: FriendGetComponent
   },
   {
-    path: 'edit/:id',
+    path: 'info/edit/:id',
     component: InfoEditComponent
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
     component: InfoGetComponent
   },
   {
-    path: 'delete/:id',
+    path: 'friend/delete/:id',
     component: FriendDeleteComponent
   }
 ];

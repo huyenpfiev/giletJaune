@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpErrorResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,21 +7,20 @@ import { HttpClient } from '@angular/common/http';
 export class InfosService {
 
   uri = 'http://localhost:4000/infos';
-
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  register(FirstName, LastName, Age, Family, Role, Username, Password) {
-    const obj = {
-      FirstName,
-      LastName,
-      Age,
-      Family,
-      Role,
-      Username,
-      Password
-    };
+  register(obj) {
+    // const obj = {
+    //   FirstName,
+    //   LastName,
+    //   Age,
+    //   Family,
+    //   Role,
+    //   Username,
+    //   Password
+    // };
     console.log(obj);
-    this.http.post(`${this.uri}/add`, obj)
-        .subscribe(res => console.log('Done'));
+    this.http.post(`${this.uri}/register`, obj).subscribe(res => console.log(res));
   }
 }
