@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthenticationService, UserDetails } from '../service/authentication.service';
 @Component({
   selector: 'app-info-get',
   templateUrl: './info-get.component.html',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoGetComponent implements OnInit {
 
-  constructor() { }
+  details: UserDetails;
+
+  constructor(private auth: AuthenticationService) {}
 
   ngOnInit() {
+    // this.auth.getInfos().subscribe(
+    //   user => {
+    //     this.details = user;
+    //   },
+    //   err => {
+    //     console.error(err);
+    //   }
+    // )
   }
 
 }

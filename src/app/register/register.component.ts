@@ -3,6 +3,7 @@ import { FormGroup,  FormBuilder,  Validators ,FormControl} from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import { InfosService } from '../service/infos.service';
 import { AlertService } from '../service/alert.service';
+import { AuthenticationService } from '../service/authentication.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   situations: any=['Marié','Divorcé','Pacsé','Célibataire','Veuf'];
   roles:any=['Casseur','Protection'];
 
-  constructor(private fb: FormBuilder,private is: InfosService, private alert:AlertService,private route: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder,private is: InfosService,private auth: AuthenticationService,private route: ActivatedRoute, private router: Router) {
     this.createForm();
   }
 
@@ -49,10 +50,13 @@ export class RegisterComponent implements OnInit {
       var Username=this.angForm.get('Username').value;
       var Password=this.angForm.get('Password').value;
     
-    this.is.register(FirstName,LastName,Age,Family,Role,Username,Password).subscribe(
+    this.auth.register(FirstName,LastName,Age,Family,Role,Username,Password).subscribe(
       res => {
         //this.alert.success('Registration successful', true)
-        this.router.navigate(['login']);
+        if(res['Account']=='Success'){
+          this.router.navigate(['login']);
+        }
+        
       }
       
     );

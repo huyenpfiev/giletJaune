@@ -6,7 +6,7 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
-
+import { AuthenticationService } from './service/authentication.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,12 +14,12 @@ import { NavigationCancel,
 })
 export class AppComponent {
   title = 'giletJauneApp';
-  notConnect=false;
-  constructor(private loadingBar: SlimLoadingBarService, private router: Router) {
+
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router,public auth: AuthenticationService) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
-    this.notConnect=true;
+    
   }
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {

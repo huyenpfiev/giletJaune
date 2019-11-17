@@ -15,6 +15,9 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InfosService } from './service/infos.service';
 import { AlertService } from './service/alert.service';
+import { AlertComponent } from './alert/alert.component';
+import { AuthenticationService } from './service/authentication.service'
+import { AuthGuardService } from './service/auth-guard.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,8 @@ import { AlertService } from './service/alert.service';
     FriendDeleteComponent,
     FriendGetComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent
     
   ],
   imports: [
@@ -37,7 +41,9 @@ import { AlertService } from './service/alert.service';
   ],
   providers: [
     InfosService,
-    AlertService
+    AlertService,
+    AuthenticationService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,8 @@ import { InfoGetComponent } from './info-get/info-get.component';
 import {FriendDeleteComponent} from './friend-delete/friend-delete.component';
 import { FriendAddComponent } from './friend-add/friend-add.component';
 import { FriendGetComponent } from './friend-get/friend-get.component';
+import { AlertComponent } from './alert/alert.component';
+import { AuthGuardService } from './service/auth-guard.service';
 const routes: Routes = [
   {
     path: 'login',
@@ -31,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'infos',
-    component: InfoGetComponent
+    component: InfoGetComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'friend/delete/:id',
