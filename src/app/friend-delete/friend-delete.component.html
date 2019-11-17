@@ -1,1 +1,28 @@
-<p>friend-delete works!</p>
+<div *ngIf="!hasFriends" >
+    <h3 class="text-center">Vous n'avez pas encore d'amis!</h3>
+</div>
+<table class="table table-hover" *ngIf="hasFriends">
+    <title>Tous les amis</title>
+    <thead>
+    <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Age</th>
+        <th>Rôle</th>
+    </tr>
+    </thead>
+  
+    <tbody>
+        <tr *ngFor="let x of list;let i = index">
+            <td>{{ x.FirstName }}</td>
+            <td>{{ x.LastName }}</td>
+            <td>{{ x.Age }}</td>
+            <td>{{ x.Role }}</td>
+            <td><a  class="btn btn-danger" (click)="deleteFriend(x._id,i)">Supprimer</a></td>
+        </tr>
+    </tbody>
+  </table>
+
+    <button type="button" class="btn btn-primary mx-auto d-block" (click)="getUnFriend()">Ajouter des amis</button>
+
+  

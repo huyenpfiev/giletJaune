@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, UserDetails } from '../service/authentication.service';
+import { AuthenticationService } from '../service/authentication.service';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-info-get',
   templateUrl: './info-get.component.html',
@@ -7,19 +8,23 @@ import { AuthenticationService, UserDetails } from '../service/authentication.se
 })
 export class InfoGetComponent implements OnInit {
 
-  details: UserDetails;
-
-  constructor(private auth: AuthenticationService) {}
-
+  
+  infos: any={};
+  constructor(private auth: AuthenticationService,private router: Router) {
+  }
+  
+  modifier(){
+    this.router.navigate(['info/edit']);
+  }
   ngOnInit() {
-    // this.auth.getInfos().subscribe(
-    //   user => {
-    //     this.details = user;
-    //   },
-    //   err => {
-    //     console.error(err);
-    //   }
-    // )
+    this.auth.getInfos().subscribe(
+      user => {
+        this.infos = user;
+      },
+      err => {
+        console.error(err);
+      }
+    )
   }
 
 }

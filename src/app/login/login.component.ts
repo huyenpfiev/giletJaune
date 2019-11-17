@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InfosService } from '../service/infos.service';
+
 import { AuthenticationService } from '../service/authentication.service';
 @Component({
   selector: 'app-login',
@@ -11,9 +11,11 @@ import { AuthenticationService } from '../service/authentication.service';
 export class LoginComponent implements OnInit {
 
   angForm: FormGroup;
-
-  constructor(private fb: FormBuilder,private is: InfosService,private auth:AuthenticationService, private router: Router) {
+  invalid:boolean;
+  
+  constructor(private fb: FormBuilder,private auth:AuthenticationService, private router: Router) {
   this.createForm();
+  this.invalid=false;
   }
 
   createForm() {
@@ -29,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(Username,Password).subscribe(res=>{
       
       if(res['Account'] == 'Incorrect'){
-        console.log(res);
+        this.invalid=true;
       }
       else{
         this.router.navigate(['infos']);

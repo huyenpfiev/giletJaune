@@ -23,7 +23,10 @@ let Info = new Schema({
   },
   Password:{
       type:String
-  }
+  },
+  Friends_id:[
+    {type:mongoose.Types.ObjectId}
+  ]
 },{
     collection: 'Info'
 });

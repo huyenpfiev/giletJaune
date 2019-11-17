@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators ,FormControl} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InfosService } from '../service/infos.service';
-import { AlertService } from '../service/alert.service';
+
 import { AuthenticationService } from '../service/authentication.service';
 @Component({
   selector: 'app-register',
@@ -15,9 +14,10 @@ export class RegisterComponent implements OnInit {
   select:FormControl;
   situations: any=['Marié','Divorcé','Pacsé','Célibataire','Veuf'];
   roles:any=['Casseur','Protection'];
-
-  constructor(private fb: FormBuilder,private is: InfosService,private auth: AuthenticationService,private route: ActivatedRoute, private router: Router) {
+  existed:boolean;
+  constructor(private fb: FormBuilder,private auth: AuthenticationService,private route: ActivatedRoute, private router: Router) {
     this.createForm();
+    this.existed=false;
   }
 
   createForm() {
@@ -52,9 +52,12 @@ export class RegisterComponent implements OnInit {
     
     this.auth.register(FirstName,LastName,Age,Family,Role,Username,Password).subscribe(
       res => {
-        //this.alert.success('Registration successful', true)
+        
         if(res['Account']=='Success'){
           this.router.navigate(['login']);
+        }
+        if(res['Account']='Account existed'){
+          this.existed=true;
         }
         
       }

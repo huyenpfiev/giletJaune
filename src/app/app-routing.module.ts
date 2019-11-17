@@ -7,8 +7,6 @@ import { InfoEditComponent } from './info-edit/info-edit.component';
 import { InfoGetComponent } from './info-get/info-get.component';
 import {FriendDeleteComponent} from './friend-delete/friend-delete.component';
 import { FriendAddComponent } from './friend-add/friend-add.component';
-import { FriendGetComponent } from './friend-get/friend-get.component';
-import { AlertComponent } from './alert/alert.component';
 import { AuthGuardService } from './service/auth-guard.service';
 const routes: Routes = [
   {
@@ -23,12 +21,9 @@ const routes: Routes = [
     path: 'friend/add',
     component: FriendAddComponent
   },
+  
   {
-    path: 'friends',
-    component: FriendGetComponent
-  },
-  {
-    path: 'info/edit/:id',
+    path: 'info/edit',
     component: InfoEditComponent
   },
   {
@@ -37,7 +32,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'friend/delete/:id',
+    path: 'friend/delete',
     component: FriendDeleteComponent
   }
 ];

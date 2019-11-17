@@ -18,6 +18,11 @@
         </a>
       </li>
       <li class="nav-item" *ngIf="auth.isLoggedIn()">
+        <a routerLink="friend/delete" class="nav-link" routerLinkActive="active">
+          Mes amis
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="auth.isLoggedIn()">
         <a routerLink="" class="nav-link" (click)="auth.logout()" routerLinkActive="active">
           Déconnexion
         </a>

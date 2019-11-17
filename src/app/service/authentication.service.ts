@@ -7,13 +7,10 @@ import { Router } from '@angular/router'
 export interface UserDetails {
   _id:string;
   FirstName: string;
-  LastName: string;
-  Age:number;
-  Family: string;
-  Role:string;
-  Username: string;
-  Password: string;
- 
+  LastName: string;  
+  Age:number,
+  Family:string,
+  Role:string
 }
 
 interface TokenResponse {
@@ -93,11 +90,53 @@ export class AuthenticationService {
     return request;
   }
 
-//   public getInfos(): Observable<any> {
-//     return this.http.post(`${this.uri}/getInfos`, {
-//       headers: { Authorization: ` ${this.getToken()}` }
-//     });
-//   }
+  public getInfos(): Observable<any> {
+    return this.http.get(`${this.uri}/getInfos`, {
+      headers: { Authorization: ` ${this.getToken()}` }
+    });
+  }
+  public update(FirstName,LastName,Age,Family,Role){
+    const obj = {
+      FirstName,
+      LastName,
+      Age,
+      Family,
+      Role
+    };
+    return this.http.post(`${this.uri}/update`, obj,{
+      headers: { Authorization: ` ${this.getToken()}` }
+    });
+  }
+  public getFriends(){
+    return this.http.get(`${this.uri}/getFriends`,{
+      headers: { Authorization: ` ${this.getToken()}` }
+    });
+  }
+  public deleteFriend(id){
+    const obj={
+      _id:id
+    }
+    return this.http.post(`${this.uri}/deleteFriend`,obj,{
+      headers: { Authorization: ` ${this.getToken()}` }
+    });
+    
+      
+  }
+  public getUnFriends(){
+    return this.http.get(`${this.uri}/getUnFriends`,{
+      headers: { Authorization: ` ${this.getToken()}` }
+    });
+  }
+  public addFriend(id){
+    const obj={
+      _id:id
+    }
+    return this.http.post(`${this.uri}/addFriend`,obj,{
+      headers: { Authorization: ` ${this.getToken()}` }
+    });
+      
+  }
+  
 
   public logout(): void {
     this.token = '';

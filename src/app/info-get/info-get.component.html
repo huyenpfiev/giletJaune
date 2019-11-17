@@ -3,29 +3,31 @@
       <div class="col-sm-8 mx-auto">
         <h2 class="text-center">MES INFOMATIONS PERSONNELLES</h2>
       </div>
-      <table class="table col-md-6 mx-auto">
+      <table class="table col-md-8 mx-auto">
         <tr>
           <th>Prénom</th>
-          <td>{{auth.getUserDetails()?.FirstName}}</td>
+          <td>{{infos.FirstName}}</td>
         </tr>
         <tr>
           <th>Nom</th>
-          <td>{{ auth.getUserDetails()?.LastName }}</td>
+          <td>{{ infos.LastName }}</td>
         </tr>
         <tr>
           <th>Age</th>
-          <td>{{ auth.getUserDetails()?.Age }}</td>
+          <td>{{ infos.Age }}</td>
         </tr>
         <tr>
             <th>Situation familiale</th>
-            <td>{{ auth.getUserDetails()?.Family }}</td>
+            <td>{{ infos.Family }}</td>
         </tr>
         <tr>
             <th>Rôle</th>
-            <td>{{ auth.getUserDetails()?.Role }}</td>
+            <td>{{ infos.Role }}</td>
         </tr>
-        <center><button type="submit" class="btn btn-primary" >Modifier</button></center>
+        
       </table>
+     
+      <button type="submit" class="btn btn-primary mx-auto d-block" (click)="modifier()">Modifier</button>
       
     </div>
   </div>

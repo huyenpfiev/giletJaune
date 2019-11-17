@@ -7,15 +7,13 @@ import { InfoGetComponent } from './info-get/info-get.component';
 import { InfoEditComponent } from './info-edit/info-edit.component';
 import { FriendAddComponent } from './friend-add/friend-add.component';
 import { FriendDeleteComponent } from './friend-delete/friend-delete.component';
-import { FriendGetComponent } from './friend-get/friend-get.component';
+
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { InfosService } from './service/infos.service';
-import { AlertService } from './service/alert.service';
-import { AlertComponent } from './alert/alert.component';
+
 import { AuthenticationService } from './service/authentication.service'
 import { AuthGuardService } from './service/auth-guard.service'
 @NgModule({
@@ -25,10 +23,10 @@ import { AuthGuardService } from './service/auth-guard.service'
     InfoEditComponent,
     FriendAddComponent,
     FriendDeleteComponent,
-    FriendGetComponent,
+    
     LoginComponent,
-    RegisterComponent,
-    AlertComponent
+    RegisterComponent
+   
     
   ],
   imports: [
@@ -40,8 +38,6 @@ import { AuthGuardService } from './service/auth-guard.service'
     
   ],
   providers: [
-    InfosService,
-    AlertService,
     AuthenticationService,
     AuthGuardService
   ],

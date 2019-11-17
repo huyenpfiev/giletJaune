@@ -1,1 +1,66 @@
-<p>info-edit works!</p>
+<h2>INFORMATIONS PERSONNELLES</h2>
+<div class="card">
+    <div class="card-body">
+
+      <form [formGroup]="angForm"  novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Prénom</label>
+          <input type="text" class="form-control" 
+          formControlName="FirstName" 
+          #FirstName 
+          [(ngModel)]="infos.FirstName" />
+        </div>
+        <div *ngIf="angForm.controls['FirstName'].invalid && (angForm.controls['FirstName'].dirty || angForm.controls['FirstName'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['FirstName'].errors.required">
+                  Prénom est requis.
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Nom</label>
+            <input type="text" class="form-control" formControlName="LastName" 
+            #LastName
+            [(ngModel)]="infos.LastName" />
+          </div>
+          <div *ngIf="angForm.controls['LastName'].invalid && (angForm.controls['LastName'].dirty || angForm.controls['LastName'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['LastName'].errors.required">
+                  Nom est requis.
+                </div>
+        </div>
+          <div class="form-group">
+            <label class="col-md-4">Age</label>
+            <input type="text" class="form-control" formControlName="Age" 
+            #Age
+            [(ngModel)]="infos.Age" />
+          </div>
+          <div *ngIf="angForm.controls['Age'].invalid && (angForm.controls['Age'].dirty || angForm.controls['Age'].touched)" class="alert alert-danger">
+                <div *ngIf="angForm.controls['Age'].errors.required">
+                  Age est requis.
+                </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Situation familiale</label>
+          <select class="form-control select" formControlName="Family" 
+          (change)="onChangeFamily($event)" 
+          [(ngModel)]="infos.Family">
+            <option *ngFor="let s of situations" [ngValue]="s">{{s}}</option>
+            
+          </select>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Rôle</label>
+            <select class="form-control" formControlName="Role" 
+            (change)="onChangeRole($event)"
+            [(ngModel)]="infos.Role">
+                <option  *ngFor="let r of roles" [ngValue]="r">{{r}}</option>
+                
+              </select>
+        </div>
+        
+        <div class="btn-group" role="group">
+          <button type="submit" class="btn btn-success" 
+          [disabled]="angForm.pristine || angForm.invalid" (click)="update()">Enregistrer</button> 
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>

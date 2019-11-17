@@ -4,6 +4,9 @@
     <div class="card-body">
 
       <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
+          <div *ngIf="invalid" class="alert alert-danger">
+              Nom d'utilisateur ou Mot de passe incorrect!
+          </div>
         <div class="form-group">
                 <label class="col-md-4">Nom d'utilisateur</label>
                 <input type="text" class="form-control" formControlName="Username" 
