@@ -136,7 +136,14 @@ export class AuthenticationService {
     });
       
   }
-  
+  public addAutre(FirstName,LastName,Age,Family,Role,Username,Password){
+    const obj={
+      FirstName,LastName,Age,Family,Role,Username,Password
+    }
+    return this.http.post(`${this.uri}/addAutre`,obj,{
+      headers: { Authorization: ` ${this.getToken()}` }
+  });
+}
 
   public logout(): void {
     this.token = '';

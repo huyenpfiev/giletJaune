@@ -15,7 +15,9 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AuthenticationService } from './service/authentication.service'
-import { AuthGuardService } from './service/auth-guard.service'
+import { AuthGuardService } from './service/auth-guard.service';
+
+import { AddFriendComponent } from './add-friend/add-friend.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { AuthGuardService } from './service/auth-guard.service'
     FriendDeleteComponent,
     
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+   
+    AddFriendComponent
    
     
   ],

@@ -176,6 +176,31 @@ infoRoutes.route('/addFriend').post(function(req,res){
   })
 });
 
+infoRoutes.route('/addAutre').post(function(req,res){
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+  var info=new Info(req.body);
+  info.save();
+        // .then(info => {
+        // res.status(200).json({'Account': 'Success'});
+        // })
+        // .catch(err => {
+        // res.status(400).send("Unable to save to database");
+        // });    
+  
+  Info.findById(decoded._id,function(err,user){
+    if(!user)
+    res.status(404).send("User does not exist");
+    else{
+      user.Friends_id.push(info._id);
+      user.save().then(r => {
+        res.json('OK');
+      })
+      .catch(err => {
+        res.status(400).send("Unable");
+      });
+    }
 
+  })
+})
 
 module.exports = infoRoutes;

@@ -8,6 +8,7 @@ import { InfoGetComponent } from './info-get/info-get.component';
 import {FriendDeleteComponent} from './friend-delete/friend-delete.component';
 import { FriendAddComponent } from './friend-add/friend-add.component';
 import { AuthGuardService } from './service/auth-guard.service';
+import {AddFriendComponent} from './add-friend/add-friend.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'friend/delete',
     component: FriendDeleteComponent
+  },
+  {
+    path:'friend/addAutre',
+    component:AddFriendComponent
   }
 ];
 

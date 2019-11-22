@@ -33,5 +33,7 @@ export class FriendAddComponent implements OnInit {
   showFriends(){
     this.router.navigate(['friend/delete']);
   }
-
+  addAutre(){
+    this.router.navigate(['friend/addAutre']);
+  }
 }
