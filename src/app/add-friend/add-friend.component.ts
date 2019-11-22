@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators ,FormControl} from '@angular/forms';
 import { AuthenticationService } from '../service/authentication.service';
+
 @Component({
   selector: 'app-add-friend',
   templateUrl: './add-friend.component.html',
@@ -50,9 +51,13 @@ export class AddFriendComponent implements OnInit {
     
     this.auth.addAutre(FirstName,LastName,Age,Family,Role,Username,Password).subscribe(
       res => {
-        if(res=='OK')
-        this.router.navigate['friend-delete'];
-  
+        if(res=='OK'){
+          this.router.navigate(['friend/delete']);
+          
+        }
+
+        
+        
         }
 
     );
